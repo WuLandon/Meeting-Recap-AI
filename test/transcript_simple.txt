@@ -1,0 +1,4 @@
+Bob: Let's move the product launch to next Friday so design can finalize the landing page.
+Sarah: Agreed. I’ll update the launch calendar and prepare new social assets.
+John: I’ll notify the beta users about the new date.
+Bob: Perfect. Next meeting will be on Wednesday at 10 AM to review final QA.

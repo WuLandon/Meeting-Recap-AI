@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": {
+    "summary": "The team brainstormed new features for the mobile app to boost user retention, shortlisting streaks, personalized tips, and smart notifications.",
+    "decisions": [
+      "Shortlist streaks, personalized tips, and smart notifications as potential new features."
+    ],
+    "action_items": [
+      {
+        "task": "Pull engagement metrics",
+        "owner": "John",
+        "due": "Thursday"
+      },
+      {
+        "task": "Draft one feature mockup",
+        "owner": [
+          "Sarah",
+          "John",
+          "Emily"
+        ],
+        "due": "Before next week's meeting"
+      }
+    ],
+    "next_meeting": "Next week's meeting"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "data": {
+    "summary": "The team decided to postpone the product launch to next Friday to allow design to finalize the landing page.",
+    "decisions": [
+      "Postpone product launch to next Friday."
+    ],
+    "action_items": [
+      {
+        "task": "Update the launch calendar",
+        "owner": "Sarah",
+        "due": null
+      },
+      {
+        "task": "Prepare new social assets",
+        "owner": "Sarah",
+        "due": null
+      },
+      {
+        "task": "Notify the beta users about the new date",
+        "owner": "John",
+        "due": null
+      }
+    ],
+    "next_meeting": "Wednesday at 10 AM"
+  }
+}

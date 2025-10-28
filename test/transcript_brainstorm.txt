@@ -1,0 +1,8 @@
+Bob: Alright team, today’s goal is to brainstorm new features for our mobile app to boost user retention.  
+Sarah: Maybe we could add a streak system or daily rewards — people love progress tracking.  
+John: I like that. What about personalized tips based on user activity?  
+Emily: Or short push notifications that remind users to check in, but not too spammy.  
+Bob: Good points. Let’s shortlist streaks, personalized tips, and smart notifications.  
+Sarah: We’ll probably need analytics data to personalize effectively.  
+John: I can pull engagement metrics by Thursday.  
+Bob: Great. Let’s each draft one feature mockup before next week’s meeting.  

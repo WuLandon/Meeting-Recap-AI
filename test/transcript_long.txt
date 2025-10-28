@@ -1,0 +1,8 @@
+Bob: Morning everyone. Let's start with the new onboarding flow metrics.
+Sarah: The completion rate improved from 68% to 82% since we added the progress bar.
+John: That’s great. Next, I think we should update the user guide to match the new layout.
+Bob: Agreed. Let’s make that a priority this week.
+Sarah: We also need to finalize pricing tiers before the investor demo next Monday.
+John: I’ll run the pricing spreadsheet by Friday.
+Bob: Perfect. Decision summary — prioritize pricing and onboarding updates.
+Next meeting: Monday 9 AM for investor demo rehearsal.
