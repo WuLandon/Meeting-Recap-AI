@@ -22,7 +22,7 @@ export default function UploadBox({ transcript, loading, onChange, onSubmit }: U
         disabled={loading}
         className="bg-blue-600 text-white font-medium rounded-lg py-2 hover:bg-blue-700 disabled:opacity-50"
       >
-        {loading ? "Analyzing..." : "Generate Summary"}
+        {loading ? "Summarizing..." : "Generate Summary"}
       </button>
     </form>
   );
