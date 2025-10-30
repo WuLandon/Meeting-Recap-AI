@@ -13,3 +13,11 @@ export const mockMeetingData: MeetingOutput = {
   ],
   next_meeting: "Next Tuesday 11 AM",
 };
+
+// export const mockMeetingData: MeetingOutput = {
+//   summary:
+//     "The team discussed upcoming marketing strategies and finalized the new campaign launch date.",
+//   decisions: [],
+//   action_items: [],
+//   next_meeting: ""
+// };
