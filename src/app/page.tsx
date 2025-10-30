@@ -8,6 +8,8 @@ import { generateMeetingSummary } from "@/api/meeting";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
 import SummaryCard from "@/components/SummaryCard";
 import ActionItemsTable from "@/components/ActionItemsTable";
+import DecisionsCard from "@/components/DecisionsCard";
+import NextMeetingCard from "@/components/NextMeetingCard";
 import UploadBox from "@/components/UploadBox";
 import Loader from "@/components/Loader";
 import ErrorMessage from "@/components/ErrorMessage";
@@ -91,12 +93,9 @@ export default function HomePage() {
           >
             <SummaryCard summary={result.summary} />
             <ActionItemsTable items={result.action_items} />
-            {result.next_meeting && (
-              <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
-                <h2 className="text-lg font-semibold mb-2 text-gray-800">Next Meeting</h2>
-                <p className="text-gray-700">{result.next_meeting}</p>
-              </div>
-            )}
+            <DecisionsCard decisions={result.decisions} />
+            <NextMeetingCard nextMeeting={result.next_meeting ?? null} 
+            />
           </motion.div>
         )}
       </AnimatePresence>
