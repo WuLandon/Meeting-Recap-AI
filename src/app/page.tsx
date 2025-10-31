@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { generateMeetingSummary } from "@/api/meeting";
+import { generateMeetingSummary } from "@/services/meeting";
 import { USE_MOCK } from "@/config/env";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
 import { useToast } from "@/hooks/use-toast";

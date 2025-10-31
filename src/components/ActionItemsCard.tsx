@@ -34,7 +34,28 @@ export const ActionItemsCard = ({ items }: ActionItemsCardProps) => {
               {items.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell className="font-medium">{item.task}</TableCell>
-                  <TableCell>{item.owner}</TableCell>
+                  <TableCell className="flex flex-wrap gap-2">
+                    {Array.isArray(item.owner) ? (
+                      item.owner.length > 0 ? (
+                        item.owner.map((name, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-full bg-muted text-foreground text-xs font-medium"
+                          >
+                            {name}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-muted-foreground">—</span>
+                      )
+                    ) : item.owner ? (
+                      <span className="px-2 py-0.5 rounded-full bg-muted text-foreground text-xs font-medium">
+                        {item.owner}
+                      </span>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </TableCell>
                   <TableCell className="text-muted-foreground">{item.due || "—"}</TableCell>
                 </TableRow>
               ))}
