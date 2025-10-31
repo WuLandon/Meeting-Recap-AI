@@ -1,16 +1,16 @@
-import React from "react";
+import { Card } from "@/components/ui/card";
 
 interface SummaryCardProps {
   summary: string;
 }
 
-export default function SummaryCard({ summary }: SummaryCardProps) {
-  if (!summary) return null;
-
+export const SummaryCard = ({ summary }: SummaryCardProps) => {
   return (
-    <div className="bg-white shadow-sm border rounded-lg p-4 w-full">
-      <h2 className="text-lg font-semibold mb-2 text-gray-800">Summary</h2>
-      <p className="text-gray-700 leading-relaxed">{summary}</p>
-    </div>
+    <Card className="p-6 shadow-elegant border-border">
+      <h2 className="text-lg font-semibold text-foreground mb-4">Summary</h2>
+      <p className="text-foreground leading-relaxed max-w-prose">
+        {summary}
+      </p>
+    </Card>
   );
-}
+};

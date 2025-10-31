@@ -1,106 +1,112 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { USE_MOCK } from "@/config/env";
-import SplitLayout from "@/components/layout/SplitLayout";
 import { generateMeetingSummary } from "@/api/meeting";
+import { USE_MOCK } from "@/config/env";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
-import SummaryCard from "@/components/SummaryCard";
-import ActionItemsTable from "@/components/ActionItemsTable";
-import DecisionsCard from "@/components/DecisionsCard";
-import NextMeetingCard from "@/components/NextMeetingCard";
-import UploadBox from "@/components/UploadBox";
-import Loader from "@/components/Loader";
-import ErrorMessage from "@/components/ErrorMessage";
-import EmptyState from "@/components/EmptyState";
+import { useToast } from "@/hooks/use-toast";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import { Header } from "@/components/Header";
+import { TranscriptInput } from "@/components/TranscriptInput";
+import { ResultsPanel } from "@/components/ResultsPanel";
 
 export default function HomePage() {
-  const [transcript, setTranscript] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MeetingOutput | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
+  async function handleGenerate(transcript: string) {
     if (loading) return;
 
     if (!USE_MOCK && !transcript.trim()) {
-      setError("Please paste a meeting transcript before generating a summary.");
+      toast({
+        title: "Missing Transcript",
+        description: "Please paste a meeting transcript before generating a summary.",
+        variant: "destructive",
+      });
       return;
     }
 
-    setError(null);
     setLoading(true);
     setResult(null);
 
     try {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
       const output = await generateMeetingSummary(transcript);
+
       if (!output || !output.summary) {
-        setError("No summary could be generated. Try providing more transcript details.");
+        toast({
+          title: "No Summary Found",
+          description: "Try providing more detailed transcript content.",
+          variant: "destructive",
+        });
         return;
       }
-      setResult(output);
+
+      setTimeout(() => {
+        setResult(output);
+        toast({
+          title: "Summary generated",
+          description: "Your meeting recap is ready.",
+        });
+      }, 300);
     } catch (err: any) {
       console.error(err);
-      setError("Something went wrong while analyzing. Please try again.");
+      toast({
+        title: "Error",
+        description: "Failed to generate summary. Please try again.",
+        variant: "destructive",
+      });
     } finally {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 300);
     }
   }
 
-  const leftContent = (
-    <div className="h-full flex flex-col">
-      <h1 className="text-3xl font-bold mb-4 text-gray-900">Meeting Recap AI</h1>
-      <UploadBox
-        transcript={transcript}
-        loading={loading}
-        onChange={setTranscript}
-        onSubmit={handleSubmit}
-      />
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8 max-w-[1600px]">
+        {/* Mobile view */}
+        <div className="lg:hidden space-y-8">
+          <div className="panel-bg rounded-3xl p-6 shadow-subtle">
+            <Header />
+            <TranscriptInput
+              onGenerate={handleGenerate}
+              isLoading={loading}
+            />
+          </div>
+          <div>
+            <ResultsPanel data={result} isLoading={loading} />
+          </div>
+        </div>
+
+        {/* Desktop: Two-panel layout */}
+        <div className="hidden lg:block h-[calc(100vh-4rem)]">
+          <ResizablePanelGroup direction="horizontal" className="gap-0">
+            {/* Left Panel */}
+            <ResizablePanel defaultSize={40} minSize={25} maxSize={60}>
+              <div className="panel-bg rounded-3xl p-8 shadow-subtle overflow-y-auto h-full mr-4">
+                <Header />
+                <TranscriptInput
+                  onGenerate={handleGenerate}
+                  isLoading={loading}
+                />
+              </div>
+            </ResizablePanel>
+
+            {/* Divider */}
+            <ResizableHandle />
+
+            {/* Right Panel */}
+            <ResizablePanel defaultSize={60} minSize={40} maxSize={75}>
+              <div className="overflow-y-auto h-full ml-4">
+                <ResultsPanel data={result} isLoading={loading} />
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
+      </div>
     </div>
   );
-
-  const rightContent = (
-    <>
-      <AnimatePresence mode="wait">
-        {loading && (
-          <motion.div
-            key="loader"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Loader />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {error && <ErrorMessage message={error} />}
-      {!result && !loading && !error && <EmptyState />}
-
-      <AnimatePresence mode="wait">
-        {result && !error && (
-          <motion.div
-            key="results"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="max-w-2xl mx-auto flex flex-col gap-4"
-          >
-            <SummaryCard summary={result.summary} />
-            <ActionItemsTable items={result.action_items} />
-            <DecisionsCard decisions={result.decisions} />
-            <NextMeetingCard nextMeeting={result.next_meeting ?? null} 
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-
-  return <SplitLayout left={leftContent} right={rightContent} />;
 }
