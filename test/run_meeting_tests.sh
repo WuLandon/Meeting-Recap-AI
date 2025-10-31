@@ -15,11 +15,11 @@ mkdir -p "$OUTPUT_DIR"
 
 # List of transcript test files
 TEST_FILES=(
-  # "transcript_simple.txt"
+  "transcript_simple.txt"
   # "transcript_long.txt"
   # "transcript_messy.txt"
   # "transcript_client_call.txt"
-  "transcript_brainstorm.txt"
+  # "transcript_brainstorm.txt"
 )
 
 echo "🚀 Starting Meeting Minutes AI backend tests..."

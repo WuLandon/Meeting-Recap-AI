@@ -1,65 +1,112 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { generateMeetingSummary } from "@/api/meeting";
+import { USE_MOCK } from "@/config/env";
+import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import { useToast } from "@/hooks/use-toast";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import { Header } from "@/components/Header";
+import { TranscriptInput } from "@/components/TranscriptInput";
+import { ResultsPanel } from "@/components/ResultsPanel";
+
+export default function HomePage() {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<MeetingOutput | null>(null);
+  const { toast } = useToast();
+
+  async function handleGenerate(transcript: string) {
+    if (loading) return;
+
+    if (!USE_MOCK && !transcript.trim()) {
+      toast({
+        title: "Missing Transcript",
+        description: "Please paste a meeting transcript before generating a summary.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    setResult(null);
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      const output = await generateMeetingSummary(transcript);
+
+      if (!output || !output.summary) {
+        toast({
+          title: "No Summary Found",
+          description: "Try providing more detailed transcript content.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setTimeout(() => {
+        setResult(output);
+        toast({
+          title: "Summary generated",
+          description: "Your meeting recap is ready.",
+        });
+      }, 300);
+    } catch (err: any) {
+      console.error(err);
+      toast({
+        title: "Error",
+        description: "Failed to generate summary. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setTimeout(() => setLoading(false), 300);
+    }
+  }
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8 max-w-[1600px]">
+        {/* Mobile view */}
+        <div className="lg:hidden space-y-8">
+          <div className="panel-bg rounded-3xl p-6 shadow-subtle">
+            <Header />
+            <TranscriptInput
+              onGenerate={handleGenerate}
+              isLoading={loading}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div>
+            <ResultsPanel data={result} isLoading={loading} />
+          </div>
         </div>
-      </main>
+
+        {/* Desktop: Two-panel layout */}
+        <div className="hidden lg:block h-[calc(100vh-4rem)]">
+          <ResizablePanelGroup direction="horizontal" className="gap-0">
+            {/* Left Panel */}
+            <ResizablePanel defaultSize={40} minSize={25} maxSize={60}>
+              <div className="panel-bg rounded-3xl p-8 shadow-subtle overflow-y-auto h-full mr-4">
+                <Header />
+                <TranscriptInput
+                  onGenerate={handleGenerate}
+                  isLoading={loading}
+                />
+              </div>
+            </ResizablePanel>
+
+            {/* Divider */}
+            <ResizableHandle />
+
+            {/* Right Panel */}
+            <ResizablePanel defaultSize={60} minSize={40} maxSize={75}>
+              <div className="overflow-y-auto h-full ml-4">
+                <ResultsPanel data={result} isLoading={loading} />
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
+      </div>
     </div>
   );
 }

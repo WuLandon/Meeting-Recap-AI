@@ -6,8 +6,8 @@ export interface ActionItem {
 
 export interface MeetingOutput {
   summary: string;
-  decisions: string[];
-  action_items: ActionItem[];
+  decisions?: string[];
+  action_items?: ActionItem[];
   next_meeting?: string | null;
 }
 
