@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meeting Recap AI
+
+Meeting Recap AI is an intelligent productivity tool that transforms meeting transcripts into structured summaries highlighting key discussions, decisions, and action items — helping teams save time and stay organized. 
+
+Built with Next.js, TypeScript, and Tailwind CSS, the app integrates **Google’s Gemini 2.5 Flash** model through an end-to-end AI workflow that generates clear, actionable recaps from raw meeting text.
+
+---
+
+## Features
+
+* **AI-Powered Summaries** – Converts raw meeting transcripts into organized summaries
+* **Action Item Extraction** – Identifies tasks, owners, and due dates
+* **Decision Tracking** – Highlights major team decisions
+* **Next Meeting Notes** – Suggests or records upcoming meeting details
+* **Modern UI** – Responsive, minimal interface using ShadCN + Tailwind
+
+---
+
+## Tech Stack
+
+| Category             | Technologies                                                    |
+| -------------------- | --------------------------------------------------------------- |
+| **Frontend**         | Next.js 14 (App Router), React 19, TypeScript                   |
+| **UI/UX**            | Tailwind CSS, ShadCN UI, Radix Primitives                       |
+| **AI & API Layer**   | Google Gemini 2.5 Flash (via REST API), structured JSON parsing |
+| **Data Handling**    | Node.js (API routes), TypeScript interfaces                     |
+| **State Management** | React Query                                                     |
+| **Build & Tooling**  | ESLint, Prettier, npm                                           |
+| **Deployment**       | Vercel (CI/CD integration)                                      |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/meeting-recap-ai.git
+cd meeting-recap-ai
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+> If you encounter dependency conflicts, try:
+>
+> ```bash
+> npm install --legacy-peer-deps
+> ```
+>
+> This flag allows installation even when some peer dependencies don’t perfectly match (common with React version updates).
+
+### 3. Configure environment variables
+
+Create a `.env.local` file in the root directory and add:
+
+```bash
+NEXT_PUBLIC_USE_MOCK=true          # Set to false to use real API
+GOOGLE_API_KEY=your_gemini_key     # Required if USE_MOCK=false
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Example
 
-## Learn More
+### Input: Meeting Transcript
 
-To learn more about Next.js, take a look at the following resources:
+> Bob: Let's talk about the upcoming marketing campaign.<br> 
+> Sarah: I’ll handle the final asset designs so everything is ready for review.<br>
+> John: I’ll take care of preparing the email templates for the launch.<br>
+> Bob: Great. Let’s make sure all campaign assets are finalized by Friday so we can start the social rollout on Monday.<br>
+> Sarah: Sounds good. I’ll also update the schedule to reflect those dates.<br>
+> Bob: Perfect. Our next meeting will be on Tuesday at 11 AM.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Output
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```json
+{
+  "summary": "The team discussed upcoming marketing strategies and finalized the new campaign launch date.",
+  "decisions": [
+    "Finalize campaign assets by Friday",
+    "Begin social rollout on Monday"
+  ],
+  "action_items": [
+    { "task": "Design final assets", "owner": "Sarah", "due": "Friday" },
+    { "task": "Prepare email templates", "owner": "John", "due": "Monday" }
+  ],
+  "next_meeting": "Next Tuesday 11 AM"
+}
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the [MIT License](LICENSE).
