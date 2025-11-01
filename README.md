@@ -4,6 +4,8 @@ Meeting Recap AI is an intelligent productivity tool that transforms meeting tra
 
 Built with Next.js, TypeScript, and Tailwind CSS, the app integrates **Google’s Gemini 2.5 Flash** model through an end-to-end AI workflow that generates clear, actionable recaps from raw meeting text.
 
+👉 **Try It Out:** [meeting-recap-ai.vercel.app](https://meeting-recap-ai.vercel.app)
+
 ---
 
 ## Features
