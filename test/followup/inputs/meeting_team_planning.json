@@ -1,0 +1,14 @@
+{
+  "summary": "The cross-functional planning meeting covered sprint scheduling, backlog prioritization, and upcoming design handoffs. The team agreed to finalize next sprint’s roadmap and improve visibility into task dependencies to avoid bottlenecks.",
+  "decisions": [
+    "Approve sprint roadmap for Q4 initiatives.",
+    "Start weekly progress reviews on Monday mornings."
+  ],
+  "action_items": [
+    { "task": "Finalize Q4 roadmap slides", "owner": ["Riley", "Sofia"], "due": "Friday" },
+    { "task": "Audit backlog and flag dependency blockers", "owner": ["Diego"], "due": "Thursday" },
+    { "task": "Share finalized sprint calendar with all leads", "owner": ["Taylor", "Nina"], "due": "Monday" },
+    { "task": "Prepare design handoff checklist", "owner": ["Casey"], "due": null }
+  ],
+  "next_meeting": "Next Monday 9 AM"
+}

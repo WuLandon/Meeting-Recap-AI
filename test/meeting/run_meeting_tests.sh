@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # -------------------------------
-# Meeting Minutes AI - Batch Test Runner
+# Meeting Recap AI - Batch Test Runner
 # Runs all transcript test files against the local API
-# and saves results as JSON under /test/results/
+# and saves results as JSON under /test/meeting/results/
+#
+# run npm run dev
+# run ./test/meeting/run_meeting_tests.sh
 # -------------------------------
 
 API_URL="http://localhost:3000/api/meeting"
-INPUT_DIR="test"
-OUTPUT_DIR="test/results"
+INPUT_DIR="test/meeting/inputs"
+OUTPUT_DIR="test/meeting/results"
 
 # Create results directory if it doesn’t exist
 mkdir -p "$OUTPUT_DIR"
@@ -22,7 +25,7 @@ TEST_FILES=(
   # "transcript_brainstorm.txt"
 )
 
-echo "🚀 Starting Meeting Minutes AI backend tests..."
+echo "🚀 Starting Meeting Recap AI backend tests..."
 echo "-----------------------------------------------"
 
 for FILE in "${TEST_FILES[@]}"; do
