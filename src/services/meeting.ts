@@ -1,10 +1,10 @@
-import { MeetingOutput } from "@/app/api/meeting/meeting.types";
-import { mockMeetingData } from "@/mocks/MeetingData";
 import { USE_MOCK } from "@/config/env";
+import { mockMeetingData } from "@/mocks/MeetingData";
+import { MeetingOutput } from "@/app/api/meeting/meeting.types";
 
 export async function generateMeetingSummary(transcript: string): Promise<MeetingOutput> {
   if (USE_MOCK) {
-    console.log("⚙️ Using mock meeting data");
+    console.log("Using mock meeting data");
     await new Promise((r) => setTimeout(r, 1000));
     return mockMeetingData;
   }    
