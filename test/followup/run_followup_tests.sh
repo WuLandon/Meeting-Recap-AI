@@ -18,10 +18,10 @@ mkdir -p "$OUTPUT_DIR"
 
 # List of JSON test files (each should contain a valid MeetingOutput object)
 TEST_FILES=(
-  "meeting_simple.json"
+  # "meeting_simple.json"
   # "meeting_team_planning.json"
   # "meeting_brainstorming.json"
-  # "meeting_long_project_review.json"
+  "meeting_long_project_review.json"
   # "meeting_followup_nulls.json"
 )
 
