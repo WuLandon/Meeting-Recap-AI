@@ -11,6 +11,7 @@ import { Header } from "@/components/Header";
 import { TranscriptInput } from "@/components/TranscriptInput";
 import { ResultsPanel } from "@/components/ResultsPanel";
 import { EmailAssistantPanel } from "@/components/EmailAssistantPanel";
+import { ChatBubble } from "@/components/ChatBubble";
 
 export default function HomePage() {
   const [loading, setIsLoading] = useState(false);
@@ -117,14 +118,6 @@ export default function HomePage() {
             <ResultsPanel 
               data={result} 
               isLoading={loading}
-              onWriteEmail={
-                result
-                  ? hasGeneratedEmail
-                    ? handleOpenEmailPanel
-                    : handleWriteEmail
-                  : undefined
-              }
-              hasGeneratedEmail={hasGeneratedEmail}
             />
           </div>
         </div>
@@ -152,21 +145,20 @@ export default function HomePage() {
                 <ResultsPanel 
                   data={result} 
                   isLoading={loading}
-                  onWriteEmail={
-                    result
-                      ? hasGeneratedEmail
-                        ? handleOpenEmailPanel
-                        : handleWriteEmail
-                      : undefined
-                  }
-                  hasGeneratedEmail={hasGeneratedEmail}
                 />
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
+
+        {/* Chat Bubble */}
+        <ChatBubble
+          onClick={ hasGeneratedEmail ? handleOpenEmailPanel : handleWriteEmail }
+          isVisible={ !!result }
+          hasGeneratedEmail={ hasGeneratedEmail }
+        />
         
-        {/* Email Assistant Panel */}
+        {/* Email Assistant Window */}
         <EmailAssistantPanel
           isOpen={isPanelOpen}
           onClose={() => setIsPanelOpen(false)}
