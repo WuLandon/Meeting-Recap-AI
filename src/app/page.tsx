@@ -17,6 +17,7 @@ export default function HomePage() {
   const [result, setResult] = useState<MeetingOutput | null>(null);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [emailContent, setEmailContent] = useState("");
+  const [hasGeneratedEmail, setHasGeneratedEmail] = useState(false);
   const { toast } = useToast();
 
   async function handleGenerate(transcript: string) {
@@ -33,6 +34,8 @@ export default function HomePage() {
 
     setIsLoading(true);
     setResult(null);
+    setHasGeneratedEmail(false);
+    setEmailContent("");
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 600));
@@ -65,7 +68,7 @@ export default function HomePage() {
     } finally {
       setTimeout(() => setIsLoading(false), 300);
     }
-  }
+  };
 
   const handleWriteEmail = async () => {
     if (!result) return;
@@ -76,6 +79,7 @@ export default function HomePage() {
       const email = await generateFollowupEmail(result);
       setEmailContent(email);
       setIsPanelOpen(true);
+      setHasGeneratedEmail(true);
 
       toast({
         title: "Follow-up email ready",
@@ -91,6 +95,10 @@ export default function HomePage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleOpenEmailPanel = () => {
+    setIsPanelOpen(true);
   };
 
   return (
@@ -109,7 +117,14 @@ export default function HomePage() {
             <ResultsPanel 
               data={result} 
               isLoading={loading}
-              onWriteEmail={result ? handleWriteEmail : undefined}
+              onWriteEmail={
+                result
+                  ? hasGeneratedEmail
+                    ? handleOpenEmailPanel
+                    : handleWriteEmail
+                  : undefined
+              }
+              hasGeneratedEmail={hasGeneratedEmail}
             />
           </div>
         </div>
@@ -137,7 +152,14 @@ export default function HomePage() {
                 <ResultsPanel 
                   data={result} 
                   isLoading={loading}
-                  onWriteEmail={result ? handleWriteEmail : undefined}
+                  onWriteEmail={
+                    result
+                      ? hasGeneratedEmail
+                        ? handleOpenEmailPanel
+                        : handleWriteEmail
+                      : undefined
+                  }
+                  hasGeneratedEmail={hasGeneratedEmail}
                 />
               </div>
             </ResizablePanel>

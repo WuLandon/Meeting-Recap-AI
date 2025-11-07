@@ -6,14 +6,14 @@ import { EmptyState } from "./EmptyState";
 import { LoadingState } from "./LoadingState";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
 
-
 interface ResultsPanelProps {
   data: MeetingOutput | null;
   isLoading: boolean;
   onWriteEmail?: () => void;
+  hasGeneratedEmail?: boolean;
 }
 
-export const ResultsPanel = ({ data, isLoading, onWriteEmail }: ResultsPanelProps) => {
+export const ResultsPanel = ({ data, isLoading, onWriteEmail, hasGeneratedEmail }: ResultsPanelProps) => {
   if (isLoading) {
     return <LoadingState />;
   }
@@ -24,7 +24,11 @@ export const ResultsPanel = ({ data, isLoading, onWriteEmail }: ResultsPanelProp
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <SummaryCard summary={data.summary ?? ""} onWriteEmail={onWriteEmail} />
+      <SummaryCard 
+        summary={data.summary ?? ""} 
+        onWriteEmail={onWriteEmail} 
+        hasGeneratedEmail={hasGeneratedEmail} 
+      />
       <ActionItemsCard items={data.action_items ?? []} />
       <DecisionsCard decisions={data.decisions ?? []} />
       <NextMeetingCard nextMeeting={data.next_meeting ?? undefined} />

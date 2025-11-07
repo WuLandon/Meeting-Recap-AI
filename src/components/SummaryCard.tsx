@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Mail, MailOpen } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -10,9 +10,16 @@ import {
 interface SummaryCardProps {
   summary: string;
   onWriteEmail?: () => void;
+  hasGeneratedEmail?: boolean;
 }
 
-export const SummaryCard = ({ summary, onWriteEmail }: SummaryCardProps) => {
+export const SummaryCard = ({ summary, onWriteEmail, hasGeneratedEmail }: SummaryCardProps) => {
+  const buttonLabel = hasGeneratedEmail ? "Open Follow-Up Email" : "Write Follow-Up Email";
+  const tooltipText = hasGeneratedEmail 
+    ? "Open existing follow-up draft." 
+    : "Use AI to draft your meeting follow-up email.";
+  const ButtonIcon = hasGeneratedEmail ? MailOpen : Mail;
+  
   return (
     <Card className="p-6 shadow-elegant border-border">
       <div className="flex items-start justify-between mb-4">
@@ -21,12 +28,12 @@ export const SummaryCard = ({ summary, onWriteEmail }: SummaryCardProps) => {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button onClick={onWriteEmail} size="sm" className="gap-2">
-                <Mail className="w-4 h-4" />
-                Write Follow-Up Email
+                <ButtonIcon className="w-4 h-4" />
+                {buttonLabel}
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Use AI to draft your meeting follow-up email.</p>
+              <p>{tooltipText}</p>
             </TooltipContent>
           </Tooltip>
         )}
