@@ -1,8 +1,12 @@
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, Copy } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect, useRef } from "react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 interface EmailAssistantPanelProps {
   isOpen: boolean;
@@ -24,13 +28,10 @@ export const EmailAssistantPanel = ({
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setLocalContent(emailContent);
-  }, [emailContent]);
+  useEffect(() => setLocalContent(emailContent), [emailContent]);
 
   useEffect(() => {
-    if (isOpen && typeof window !== 'undefined') {
-      // Position window at bottom-right when opened
+    if (isOpen && typeof window !== "undefined") {
       const windowWidth = 560;
       const windowHeight = 420;
       setPosition({
@@ -47,7 +48,7 @@ export const EmailAssistantPanel = ({
         title: "Copied to clipboard",
         description: "Email content has been copied.",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Failed to copy",
         description: "Please try again.",
@@ -62,7 +63,7 @@ export const EmailAssistantPanel = ({
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('.drag-handle')) {
+    if ((e.target as HTMLElement).closest(".drag-handle")) {
       setIsDragging(true);
       setDragOffset({
         x: e.clientX - position.x,
@@ -81,18 +82,16 @@ export const EmailAssistantPanel = ({
       }
     };
 
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
+    const handleMouseUp = () => setIsDragging(false);
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, dragOffset]);
 
@@ -101,26 +100,22 @@ export const EmailAssistantPanel = ({
   return (
     <div
       ref={windowRef}
-      className="fixed bg-background rounded-lg shadow-2xl border border-border z-50 flex flex-col"
+      className="fixed bg-panel-surface rounded-lg shadow-elevated border border-panel-border-strong overflow-hidden z-50 flex flex-col"
       style={{
-        width: '560px',
-        height: '420px',
+        width: "560px",
+        height: "420px",
         left: `${position.x}px`,
         top: `${position.y}px`,
-        cursor: isDragging ? 'grabbing' : 'default',
+        cursor: isDragging ? "grabbing" : "default",
       }}
       onMouseDown={handleMouseDown}
     >
       {/* Header */}
-      <div className="drag-handle p-4 border-b border-border cursor-grab active:cursor-grabbing flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold text-foreground">
-            Follow-Up Email
-          </h2>
-        </div>
+      <div className="drag-handle p-2.5 bg-panel-header text-panel-header-foreground border-b border-panel-divider cursor-grab active:cursor-grabbing flex items-center justify-between">
+        <h2 className="text-base font-semibold">Follow-Up Email</h2>
         <button
           onClick={onClose}
-          className="p-1.5 hover:bg-accent rounded-md transition-colors"
+          className="p-1 rounded-md transition-colors"
           aria-label="Close window"
         >
           <X className="w-4 h-4" />
@@ -128,23 +123,33 @@ export const EmailAssistantPanel = ({
       </div>
 
       {/* Body */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 p-3">
         <Textarea
           value={localContent}
           onChange={handleChange}
-          className="min-h-[240px] resize-none text-sm leading-relaxed bg-background border-border focus:ring-2 focus:ring-primary"
+          className="w-full h-full resize-none text-sm leading-relaxed bg-panel-textarea border border-panel-border-strong rounded-md focus:ring-2 focus:ring-primary transition-colors"
           placeholder="Your AI-generated email will appear here..."
         />
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-border">
-        <div className="flex justify-end">
-          <Button onClick={handleCopy}>
+      <div className="p-2.5 bg-panel-footer border-t border-panel-divider flex justify-end items-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={handleCopy}
+              aria-label="Copy email"
+              className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Copy className="w-4 h-4" />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="top" align="end">
             Copy Email
-          </Button>
-        </div>
+          </TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );
+
 };

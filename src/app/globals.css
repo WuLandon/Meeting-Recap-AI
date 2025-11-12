@@ -33,6 +33,16 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* EmailAssistantPanel design tokens */
+    --panel-surface: 220 18% 97%;          /* main panel background */
+    --panel-header: 220 12% 90%;           /* distinct header surface */
+    --panel-header-foreground: 220 15% 18%;/* darker text for header */
+    --panel-textarea: 220 14% 94%;         /* editable surface */
+    --panel-footer: 220 13% 92%;           /* matches header family */
+    --panel-border-strong: 220 10% 84%;    /* stronger border */
+    --panel-divider: 220 12% 88%;          /* header/footer separators */
+    --panel-shadow-elevated: 0px 4px 16px hsl(220 14% 70% / 0.15);
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -76,16 +86,24 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* EmailAssistantPanel design tokens (dark mode) */
+    --panel-surface: 220 15% 12%;
+    --panel-header: 220 15% 18%;
+    --panel-header-foreground: 220 10% 95%;
+    --panel-textarea: 220 15% 15%;
+    --panel-footer: 220 15% 18%;
+    --panel-border-strong: 220 15% 20%;
+    --panel-divider: 220 15% 22%;
+    --panel-shadow-elevated: 0px 4px 16px hsl(220 10% 5% / 0.4);
+
   }
 
   * {
-    /* border-color: hsl(var(--border)); */
     @apply border-border;
   }
 
   body {
-    /* background-color: hsl(var(--background));
-    color: hsl(var(--foreground)); */
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   }
@@ -106,5 +124,27 @@
   }
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+  .panel-surface {
+    background: hsl(var(--panel-surface));
+  }
+  .panel-header {
+    background: hsl(var(--panel-header));
+    color: hsl(var(--panel-header-foreground));
+  }
+  .panel-textarea {
+    background: hsl(var(--panel-textarea));
+  }
+  .panel-footer {
+    background: hsl(var(--panel-footer));
+  }
+  .panel-border-strong {
+    border-color: hsl(var(--panel-border-strong));
+  }
+  .panel-divider {
+    border-color: hsl(var(--panel-divider));
+  }
+  .shadow-elevated {
+    box-shadow: var(--panel-shadow-elevated);
   }
 }

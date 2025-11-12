@@ -1,0 +1,107 @@
+{
+  "success": true,
+  "data": {
+    "summary": "The meeting began with individual updates from the intern team. Jordan completed the user-settings API refactor, pending infra reviewer approval. Priya finished the Notifications Preferences UI, resolving debounce logic and sending a build to QA. Sam transferred three charts for the analytics dashboard migration, awaiting metrics team fixes for missing-data states. Lina prototyped a new onboarding flow, requiring UX feedback. Marcus improved the file-import tool's performance by 18% and is optimizing error handling. Dylan completed the TypeScript migration for media-upload components, with one flaky e2e test remaining. Noah debugged an OAuth refresh token issue, implementing a fallback path due to an upstream provider problem. Ava worked on the AI recommendation module, needing access to updated embedding snapshots for evaluation. Following updates, supervisors Alex and Elena assigned new tasks for the week to each intern, covering areas like session-timeout improvements, UX flow integration, migration completion, load test coordination, authentication cleanup, diversity scoring, and onboarding iteration. A team decision was made to group all UI-state-management work into a shared module starting next sprint, with the legacy global store to be deprecated over the next two weeks. Interns were reminded to update their progress documents by Friday for a combined milestone summary presentation next week.",
+    "decisions": [
+      "Starting next sprint, all UI-state-management work will be grouped into a shared module for consistency.",
+      "The legacy global store will be deprecated over the next two weeks."
+    ],
+    "action_items": [
+      {
+        "task": "Get final approval from the infra reviewer for the user-settings API refactor.",
+        "owner": "Jordan",
+        "due": "today"
+      },
+      {
+        "task": "Aim to wrap the analytics dashboard migration.",
+        "owner": "Sam",
+        "due": "Monday (tentative, conditional on metrics fix)"
+      },
+      {
+        "task": "Ping design for UX feedback on Lina's onboarding screens.",
+        "owner": "Elena",
+        "due": "end of day"
+      },
+      {
+        "task": "Run a load test with the storage team.",
+        "owner": "Marcus",
+        "due": null
+      },
+      {
+        "task": "Add logging and re-run the flaky e2e test suite three times.",
+        "owner": "Dylan",
+        "due": null
+      },
+      {
+        "task": "Open a ticket for the testing tools team if the e2e test keeps failing.",
+        "owner": "Dylan",
+        "due": null
+      },
+      {
+        "task": "Rerun model evaluations and post the results.",
+        "owner": "Ava",
+        "due": null
+      },
+      {
+        "task": "Switch to the session-timeout improvement ticket.",
+        "owner": "Jordan",
+        "due": null
+      },
+      {
+        "task": "Start integrating the simplified UX flows.",
+        "owner": "Priya",
+        "due": null
+      },
+      {
+        "task": "Finish analytics dashboard migration work.",
+        "owner": "Sam",
+        "due": null
+      },
+      {
+        "task": "Coordinate the load test with the storage team.",
+        "owner": "Marcus",
+        "due": null
+      },
+      {
+        "task": "Help Noah with authentication cleanup tasks.",
+        "owner": "Dylan",
+        "due": null
+      },
+      {
+        "task": "Continue monitoring the OAuth fallback path.",
+        "owner": "Noah",
+        "due": null
+      },
+      {
+        "task": "Begin experimentation on the diversity scoring function.",
+        "owner": "Ava",
+        "due": null
+      },
+      {
+        "task": "Consolidate progress indicators for onboarding.",
+        "owner": "Lina",
+        "due": null
+      },
+      {
+        "task": "Assign cleanup tasks for legacy global store deprecation.",
+        "owner": "Elena",
+        "due": "over the next two weeks"
+      },
+      {
+        "task": "Update intern progress doc.",
+        "owner": [
+          "Jordan",
+          "Priya",
+          "Sam",
+          "Lina",
+          "Marcus",
+          "Dylan",
+          "Noah",
+          "Ava"
+        ],
+        "due": "Friday"
+      }
+    ],
+    "next_meeting": "next week (for combined milestone summary presentation)"
+  }
+}
