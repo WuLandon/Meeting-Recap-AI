@@ -1,4 +1,4 @@
-import { handleMeetingRequest } from "./meeting.controller";
+import { handleFollowUpRequest } from "./followup.controller";
 
 let lastCall: Record<string, number> = {};
 
@@ -12,9 +12,9 @@ export async function POST(req: Request) {
   }
   lastCall[ip] = now;
 
-  return handleMeetingRequest(req);
+  return handleFollowUpRequest(req);
 }
 
 export async function GET() {
-  return new Response("Meeting API up and running");
+  return new Response("Follow-up API up and running");
 }

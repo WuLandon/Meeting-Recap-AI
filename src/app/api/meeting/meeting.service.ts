@@ -62,21 +62,26 @@ export async function extractMeetingData(transcript: string): Promise<MeetingOut
   14. Maintain valid JSON syntax (double quotes, commas, and arrays — no trailing commas).
 
   === EXAMPLE OUTPUT ===
-  {
-    "summary": "The team discussed progress on the new dashboard analytics feature and addressed integration issues with the API. They agreed to finalize the chart layout before the next sprint and ensure the data sync bug is resolved in staging.",
-    "decisions": [
-      "Finalize dashboard chart layout by end of sprint.",
-      "Use staging environment for QA before production deployment."
-    ],
-    "action_items": [
-      { "task": "Fix API data sync bug in staging", "owner": ["Alex"], "due": "Friday" },
-      { "task": "Update dashboard chart styles for consistency", "owner": ["Priya"], "due": null },
-      { "task": "Prepare QA checklist for analytics release", "owner": ["Jordan", "Mina"], "due": "Next Monday" }
-    ],
-    "next_meeting": "Sprint review (Next Wednesday)"
-  }
-  `;
+  Subject: Follow-Up: Product Launch Coordination Meeting
 
+  Hi team,
+
+  Great discussion today! We made solid progress on launch goals and next steps for the rollout.
+
+  **Key Decisions**
+  • Final launch date confirmed for November 15.
+  • API performance updates prioritized for this sprint.
+
+  **Action Items**
+  • Bob — Resolve endpoint timeout bug by Friday.
+  • Sarah — Finalize landing-page assets by Thursday.
+
+  **Next Meeting:** Monday 10 AM
+
+  Looking forward to seeing these updates come together next sprint.
+  Best,
+  [Your Name]
+  `;
 
   const messages = [
     {

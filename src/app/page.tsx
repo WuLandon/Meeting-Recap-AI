@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { generateMeetingSummary } from "@/services/meeting";
+import { generateFollowupEmail } from "@/services/followup";
 import { USE_MOCK } from "@/config/env";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
 import { useToast } from "@/hooks/use-toast";
@@ -9,10 +10,15 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 import { Header } from "@/components/Header";
 import { TranscriptInput } from "@/components/TranscriptInput";
 import { ResultsPanel } from "@/components/ResultsPanel";
+import { EmailAssistantPanel } from "@/components/EmailAssistantPanel";
+import { ChatBubble } from "@/components/ChatBubble";
 
 export default function HomePage() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const [result, setResult] = useState<MeetingOutput | null>(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [emailContent, setEmailContent] = useState("");
+  const [hasGeneratedEmail, setHasGeneratedEmail] = useState(false);
   const { toast } = useToast();
 
   async function handleGenerate(transcript: string) {
@@ -27,8 +33,10 @@ export default function HomePage() {
       return;
     }
 
-    setLoading(true);
+    setIsLoading(true);
     setResult(null);
+    setHasGeneratedEmail(false);
+    setEmailContent("");
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 600));
@@ -59,9 +67,40 @@ export default function HomePage() {
         variant: "destructive",
       });
     } finally {
-      setTimeout(() => setLoading(false), 300);
+      setTimeout(() => setIsLoading(false), 300);
     }
-  }
+  };
+
+  const handleWriteEmail = async () => {
+    if (!result) return;
+
+    setIsLoading(true);
+
+    try {
+      const email = await generateFollowupEmail(result);
+      setEmailContent(email);
+      setIsPanelOpen(true);
+      setHasGeneratedEmail(true);
+
+      toast({
+        title: "Follow-up email ready",
+        description: "AI draft generated successfully.",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "Failed to generate follow-up email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOpenEmailPanel = () => {
+    setIsPanelOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,7 +115,10 @@ export default function HomePage() {
             />
           </div>
           <div>
-            <ResultsPanel data={result} isLoading={loading} />
+            <ResultsPanel 
+              data={result} 
+              isLoading={loading}
+            />
           </div>
         </div>
 
@@ -100,11 +142,29 @@ export default function HomePage() {
             {/* Right Panel */}
             <ResizablePanel defaultSize={60} minSize={40} maxSize={75}>
               <div className="overflow-y-auto h-full ml-4">
-                <ResultsPanel data={result} isLoading={loading} />
+                <ResultsPanel 
+                  data={result} 
+                  isLoading={loading}
+                />
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
+
+        {/* Chat Bubble */}
+        <ChatBubble
+          onClick={ hasGeneratedEmail ? handleOpenEmailPanel : handleWriteEmail }
+          isVisible={ !!result }
+          hasGeneratedEmail={ hasGeneratedEmail }
+        />
+        
+        {/* Email Assistant Window */}
+        <EmailAssistantPanel
+          isOpen={isPanelOpen}
+          onClose={() => setIsPanelOpen(false)}
+          emailContent={emailContent}
+          onEmailChange={setEmailContent}
+        />
       </div>
     </div>
   );

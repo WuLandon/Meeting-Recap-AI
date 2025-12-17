@@ -1,3 +1,5 @@
+const { Panel } = require('react-resizable-panels');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -60,6 +62,15 @@ module.exports = {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        panel: {
+          surface: "hsl(var(--panel-surface))",
+          header: "hsl(var(--panel-header))",
+          "header-foreground": "hsl(var(--panel-header-foreground))",
+          textarea: "hsl(var(--panel-textarea))",
+          footer: "hsl(var(--panel-footer))",
+          "border-strong": "hsl(var(--panel-border-strong))",
+          divider: "hsl(var(--panel-divider))",
         },
       },
       borderRadius: {

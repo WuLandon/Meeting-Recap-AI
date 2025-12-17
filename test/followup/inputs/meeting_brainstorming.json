@@ -1,0 +1,10 @@
+{
+  "summary": "The marketing team held an open brainstorming session to generate creative ideas for the Q1 brand awareness campaign. Participants explored multiple ad concepts, influencer outreach strategies, and community engagement ideas, focusing on improving audience reach and storytelling.",
+  "decisions": [],
+  "action_items": [
+    { "task": "Compile all brainstorming notes and shortlist top 5 campaign ideas", "owner": "Sasha", "due": "Wednesday" },
+    { "task": "Research potential influencer partners in the tech and design spaces", "owner": "Eli", "due": "Friday" },
+    { "task": "Prepare concept sketches for two selected ad themes", "owner": "Jordan", "due": "Next Monday" }
+  ],
+  "next_meeting": "Next Tuesday 11 AM"
+}

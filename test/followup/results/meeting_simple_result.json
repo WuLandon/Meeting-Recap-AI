@@ -1,0 +1,6 @@
+{
+  "success": true,
+  "data": {
+    "email": "Subject: Follow-Up: Dashboard Redesign & API Progress\n\nHi team,\n\nGreat to connect today and review our progress on the dashboard redesign and API reliability fixes. We covered a lot of ground and made some key decisions.\n\n**Key Decisions**\n• Finalize dashboard layout by Friday.\n• Switch to the new authentication API for next release.\n\n**Action Items**\n• Alex — Test API latency improvements by Wednesday.\n• Jordan — Submit dashboard UX revisions by Friday.\n\n**Next Meeting:** Monday 9 AM\n\nLooking forward to seeing these updates come together.\nThanks,\n[Your Name]"
+  }
+}

@@ -6,7 +6,6 @@ import { EmptyState } from "./EmptyState";
 import { LoadingState } from "./LoadingState";
 import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
 
-
 interface ResultsPanelProps {
   data: MeetingOutput | null;
   isLoading: boolean;

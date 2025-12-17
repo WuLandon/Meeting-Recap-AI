@@ -1,0 +1,12 @@
+{
+  "summary": "The team reviewed progress on the dashboard redesign and API reliability fixes.",
+  "decisions": [
+    "Finalize dashboard layout by Friday.",
+    "Switch to the new authentication API for next release."
+  ],
+  "action_items": [
+    { "task": "Test API latency improvements", "owner": "Alex", "due": "Wednesday" },
+    { "task": "Submit dashboard UX revisions", "owner": "Jordan", "due": "Friday" }
+  ],
+  "next_meeting": "Monday 9 AM"
+}

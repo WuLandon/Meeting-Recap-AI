@@ -1,9 +1,9 @@
 {
   "success": true,
   "data": {
-    "summary": "The team decided to postpone the product launch to next Friday to allow design to finalize the landing page.",
+    "summary": "The team decided to postpone the product launch to next Friday to allow the design team to finalize the landing page. Sarah will update the launch calendar and prepare new social assets, and John will notify the beta users about the new launch date. The next meeting is scheduled for Wednesday at 10 AM to review the final QA.",
     "decisions": [
-      "Postpone product launch to next Friday."
+      "Product launch moved to next Friday."
     ],
     "action_items": [
       {
