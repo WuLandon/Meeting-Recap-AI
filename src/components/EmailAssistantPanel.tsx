@@ -15,6 +15,10 @@ interface EmailAssistantPanelProps {
   onEmailChange: (content: string) => void;
 }
 
+const WINDOW_WIDTH = 560;
+const WINDOW_HEIGHT = 420;
+const MARGIN = 32;
+
 export const EmailAssistantPanel = ({
   isOpen,
   onClose,
@@ -22,28 +26,21 @@ export const EmailAssistantPanel = ({
   onEmailChange,
 }: EmailAssistantPanelProps) => {
   const { toast } = useToast();
-  const [localContent, setLocalContent] = useState(emailContent);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => setLocalContent(emailContent), [emailContent]);
-
-  useEffect(() => {
-    if (isOpen && typeof window !== "undefined") {
-      const windowWidth = 560;
-      const windowHeight = 420;
-      setPosition({
-        x: window.innerWidth - windowWidth - 32,
-        y: window.innerHeight - windowHeight - 32,
-      });
-    }
-  }, [isOpen]);
+  const [position, setPosition] = useState(() => {
+    if (typeof window === "undefined") return { x: 0, y: 0 };
+    return {
+      x: window.innerWidth - WINDOW_WIDTH - MARGIN,
+      y: window.innerHeight - WINDOW_HEIGHT - MARGIN,
+    };
+  });
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(localContent);
+      await navigator.clipboard.writeText(emailContent);
       toast({
         title: "Copied to clipboard",
         description: "Email content has been copied.",
@@ -58,7 +55,6 @@ export const EmailAssistantPanel = ({
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setLocalContent(e.target.value);
     onEmailChange(e.target.value);
   };
 
@@ -102,8 +98,8 @@ export const EmailAssistantPanel = ({
       ref={windowRef}
       className="fixed bg-panel-surface rounded-lg shadow-elevated border border-panel-border-strong overflow-hidden z-50 flex flex-col"
       style={{
-        width: "560px",
-        height: "420px",
+        width: `${WINDOW_WIDTH}px`,
+        height: `${WINDOW_HEIGHT}px`,
         left: `${position.x}px`,
         top: `${position.y}px`,
         cursor: isDragging ? "grabbing" : "default",
@@ -125,7 +121,7 @@ export const EmailAssistantPanel = ({
       {/* Body */}
       <div className="flex-1 p-3">
         <Textarea
-          value={localContent}
+          value={emailContent}
           onChange={handleChange}
           className="w-full h-full resize-none text-sm leading-relaxed bg-panel-textarea border border-panel-border-strong rounded-md focus:ring-2 focus:ring-primary transition-colors"
           placeholder="Your AI-generated email will appear here..."
@@ -151,5 +147,4 @@ export const EmailAssistantPanel = ({
       </div>
     </div>
   );
-
 };

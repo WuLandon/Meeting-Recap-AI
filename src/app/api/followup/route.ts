@@ -1,6 +1,6 @@
 import { handleFollowUpRequest } from "./followup.controller";
 
-let lastCall: Record<string, number> = {};
+const lastCall: Record<string, number> = {};
 
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for") || "unknown";
