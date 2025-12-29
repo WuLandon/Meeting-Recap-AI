@@ -119,8 +119,8 @@ export async function extractMeetingData(transcript: string): Promise<MeetingOut
       action_items: parsed.action_items || [],
       next_meeting: parsed.next_meeting || null,
     };
-  } catch (err: any) {
-    console.error("❌ extractMeetingData error details:", err);
-    throw new Error("Failed to extract meeting data.");
+  } catch (err: unknown) {
+    console.error("extractMeetingData error details:", err);
+    throw new Error("Failed to extract meeting data.", { cause: err });
   }
 }

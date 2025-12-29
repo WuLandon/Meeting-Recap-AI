@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateFollowUpEmail } from "./followup.service";
 import { MeetingOutput } from "../meeting/meeting.types";
+import { errorResponse } from "@/lib/error-response";
 
 export async function handleFollowUpRequest(req: Request) {
   try {
@@ -28,11 +29,7 @@ export async function handleFollowUpRequest(req: Request) {
       { success: true, data: { email } },
       { status: 200 }
     );
-  } catch (err: any) {
-    console.error("handleFollowUpRequest error:", err);
-    return NextResponse.json(
-      { success: false, error: err.message || "Failed to generate follow-up email." },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    return errorResponse(err, "Failed to generate follow-up email.");
   }
 }

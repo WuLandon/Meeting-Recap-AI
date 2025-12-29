@@ -130,8 +130,8 @@ export async function generateFollowUpEmail(meeting: MeetingOutput): Promise<str
 
     console.log("Follow-up email generated successfully.");
     return cleaned;
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("generateFollowUpEmail error details:", err);
-    throw new Error("Failed to generate follow-up email.");
+    throw new Error("Failed to generate follow-up email.", { cause: err });
   }
 }

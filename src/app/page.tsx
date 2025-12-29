@@ -59,8 +59,8 @@ export default function HomePage() {
           description: "Your meeting recap is ready.",
         });
       }, 300);
-    } catch (err: any) {
-      console.error(err);
+    } catch (err: unknown) {
+      console.error("generateMeetingSummary failed:", err);
       toast({
         title: "Error",
         description: "Failed to generate summary. Please try again.",
