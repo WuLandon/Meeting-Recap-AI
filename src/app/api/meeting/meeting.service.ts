@@ -107,8 +107,8 @@ export async function extractMeetingData(transcript: string): Promise<MeetingOut
     let parsed: MeetingOutput;
     try {
       parsed = JSON.parse(cleaned);
-    } catch (err) {
-      console.error("⚠️ Failed to parse JSON:", cleaned);
+    } catch (err: unknown) {
+      console.error("Failed to parse JSON:", { cleaned, err });
       throw new Error("Invalid JSON from AI model.");
     }
 

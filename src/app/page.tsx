@@ -39,8 +39,6 @@ export default function HomePage() {
     setEmailContent("");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 600));
-
       const output = await generateMeetingSummary(transcript);
 
       if (!output || !output.summary) {
@@ -52,13 +50,12 @@ export default function HomePage() {
         return;
       }
 
-      setTimeout(() => {
-        setResult(output);
-        toast({
-          title: "Summary generated",
-          description: "Your meeting recap is ready.",
-        });
-      }, 300);
+      setResult(output);
+
+      toast({
+        title: "Summary generated",
+        description: "Your meeting recap is ready.",
+      });
     } catch (err: unknown) {
       console.error("generateMeetingSummary failed:", err);
       toast({
@@ -67,7 +64,7 @@ export default function HomePage() {
         variant: "destructive",
       });
     } finally {
-      setTimeout(() => setIsLoading(false), 300);
+      setIsLoading(false);
     }
   };
 
