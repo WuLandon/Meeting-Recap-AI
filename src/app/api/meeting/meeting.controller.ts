@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { extractMeetingData } from "./meeting.service";
 import { MeetingRequest } from "./meeting.types";
+import { errorResponse } from "@/lib/error-response";
 
 export async function handleMeetingRequest(req: Request) {
   try {
@@ -21,11 +22,7 @@ export async function handleMeetingRequest(req: Request) {
       { success: true, data: result },
       { status: 200 }
     );
-  } catch (err: any) {
-    console.error("handleMeetingRequest error:", err);
-    return NextResponse.json(
-      { success: false, error: err.message || "Failed to process meeting." },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    return errorResponse(err, "Failed to process meeting.");
   }
 }

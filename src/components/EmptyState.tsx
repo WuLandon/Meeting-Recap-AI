@@ -10,7 +10,7 @@ export const EmptyState = () => {
         No results yet
       </h3>
       <p className="text-muted-foreground max-w-sm">
-        Paste a transcript to get started. We'll automatically extract summaries, action items, decisions, and more.
+        Paste a transcript to get started. We&apos;ll automatically extract summaries, action items, decisions, and more.
       </p>
     </div>
   );

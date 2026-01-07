@@ -15,8 +15,8 @@ export async function generateFollowupEmail(meetingData: MeetingOutput): Promise
     body: JSON.stringify({
       summary: meetingData.summary,
       decisions: meetingData.decisions,
-      actionItems: meetingData.action_items,
-      nextMeeting: meetingData.next_meeting,
+      action_items: meetingData.action_items,
+      next_meeting: meetingData.next_meeting,
     }),
   });
 
