@@ -1,9 +1,9 @@
-import { SummaryCard } from "./SummaryCard";
-import { ActionItemsCard } from "./ActionItemsCard";
-import { DecisionsCard } from "./DecisionsCard";
-import { NextMeetingCard } from "./NextMeetingCard";
-import { EmptyState } from "./EmptyState";
-import { LoadingState } from "./LoadingState";
+import { SummaryCard } from "@/features/recap/components/SummaryCard";
+import { ActionItemsCard } from "@/features/recap/components/ActionItemsCard";
+import { DecisionsCard } from "@/features/recap/components/DecisionsCard";
+import { NextMeetingCard } from "@/features/recap/components/NextMeetingCard";
+import { EmptyState } from "@/features/recap/components/EmptyState";
+import { LoadingState } from "@/features/recap/components/LoadingState";
 import type { MeetingOutput } from "@/shared/types/meeting.types";
 
 interface ResultsPanelProps {
