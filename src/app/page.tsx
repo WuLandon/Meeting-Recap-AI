@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { generateMeetingSummary } from "@/services/meeting";
-import { generateFollowupEmail } from "@/services/followup";
-import { USE_MOCK } from "@/config/env";
-import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import { generateMeetingSummary } from "@/client/api/meeting";
+import { generateFollowupEmail } from "@/client/api/followup";
+import { USE_MOCK } from "@/lib/env";
+import type { MeetingOutput } from "@/shared/types/meeting.types";
 import { useToast } from "@/hooks/use-toast";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { Header } from "@/components/Header";

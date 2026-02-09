@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { ActionItem } from "@/app/api/meeting/meeting.types";
+import type { ActionItem } from "@/shared/types/meeting.types";
 
 
 interface ActionItemsCardProps {

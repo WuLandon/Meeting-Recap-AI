@@ -1,6 +1,6 @@
-import { USE_MOCK } from "@/config/env";
-import { mockFollowupEmail } from "@/mocks/FollowupData";
-import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import { USE_MOCK } from "@/lib/env";
+import { mockFollowupEmail } from "@/mocks/followup-data";
+import type { MeetingOutput } from "@/shared/types/meeting.types";
 
 export async function generateFollowupEmail(meetingData: MeetingOutput): Promise<string> {
   if (USE_MOCK) {

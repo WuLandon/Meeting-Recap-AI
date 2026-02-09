@@ -4,7 +4,7 @@ import { DecisionsCard } from "./DecisionsCard";
 import { NextMeetingCard } from "./NextMeetingCard";
 import { EmptyState } from "./EmptyState";
 import { LoadingState } from "./LoadingState";
-import type { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import type { MeetingOutput } from "@/shared/types/meeting.types";
 
 interface ResultsPanelProps {
   data: MeetingOutput | null;

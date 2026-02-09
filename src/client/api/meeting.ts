@@ -1,6 +1,6 @@
-import { USE_MOCK } from "@/config/env";
-import { mockMeetingData } from "@/mocks/MeetingData";
-import { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import { USE_MOCK } from "@/lib/env";
+import { mockMeetingData } from "@/mocks/meeting-data";
+import { MeetingOutput } from "@/shared/types/meeting.types";
 
 export async function generateMeetingSummary(transcript: string): Promise<MeetingOutput> {
   if (USE_MOCK) {

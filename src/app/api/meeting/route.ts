@@ -1,16 +1,9 @@
-import { handleMeetingRequest } from "./meeting.controller";
-
-const lastCall: Record<string, number> = {};
+import { handleMeetingRequest } from "@/server/meeting/meeting.controller";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for") || "unknown";
-  const now = Date.now();
-
-  // Simple rate limiter: 1 request per 10 seconds per IP
-  if (lastCall[ip] && now - lastCall[ip] < 10000) {
-    return new Response("Too many requests. Try again in a few seconds.", { status: 429 });
-  }
-  lastCall[ip] = now;
+  const limited = rateLimit(req, { keyPrefix: "meeting" });
+  if (limited) return limited;
 
   return handleMeetingRequest(req);
 }

@@ -1,4 +1,4 @@
-import { MeetingOutput } from "@/app/api/meeting/meeting.types";
+import { MeetingOutput } from "@/shared/types/meeting.types";
 
 export const mockMeetingData: MeetingOutput = {
   summary:

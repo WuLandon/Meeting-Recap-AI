@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateFollowUpEmail } from "./followup.service";
-import { MeetingOutput } from "../meeting/meeting.types";
+import { MeetingOutput } from "@/shared/types/meeting.types";
 import { errorResponse } from "@/lib/error-response";
 
 export async function handleFollowUpRequest(req: Request) {
