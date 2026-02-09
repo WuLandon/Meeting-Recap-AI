@@ -29,9 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TooltipProvider delayDuration={200}>
-          {children}
-        </TooltipProvider>
+        <TooltipProvider delayDuration={200}>{children}</TooltipProvider>
         <Toaster />
       </body>
     </html>

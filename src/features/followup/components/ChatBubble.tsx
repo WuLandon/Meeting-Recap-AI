@@ -11,10 +11,16 @@ interface ChatBubbleProps {
   hasGeneratedEmail?: boolean;
 }
 
-export const ChatBubble = ({ onClick, isVisible, hasGeneratedEmail }: ChatBubbleProps) => {
+export const ChatBubble = ({
+  onClick,
+  isVisible,
+  hasGeneratedEmail,
+}: ChatBubbleProps) => {
   if (!isVisible) return null;
 
-  const buttonLabel = hasGeneratedEmail ? "Open Follow-Up Email" : "Write Follow-Up Email";
+  const buttonLabel = hasGeneratedEmail
+    ? "Open Follow-Up Email"
+    : "Write Follow-Up Email";
   const tooltipText = hasGeneratedEmail
     ? "Open existing follow-up draft."
     : "Use AI to draft your meeting follow-up email.";

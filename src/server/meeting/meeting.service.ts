@@ -7,7 +7,9 @@ const client = new GoogleGenAI({});
 /**
  * Extracts structured meeting data (summary, decisions, action items) from a transcript.
  */
-export async function extractMeetingData(transcript: string): Promise<MeetingOutput> {
+export async function extractMeetingData(
+  transcript: string,
+): Promise<MeetingOutput> {
   if (!transcript || transcript.trim().length === 0) {
     throw new Error("Transcript cannot be empty.");
   }
@@ -25,7 +27,7 @@ export async function extractMeetingData(transcript: string): Promise<MeetingOut
 
   try {
     const response = await client.models.generateContent({
-      model: "gemini-2.5-flash", 
+      model: "gemini-2.5-flash",
       contents: messages,
       config: { temperature: 0.2 },
     });

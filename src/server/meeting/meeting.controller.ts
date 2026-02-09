@@ -10,7 +10,7 @@ export async function handleMeetingRequest(req: Request) {
     if (!transcript || transcript.trim().length === 0) {
       return NextResponse.json(
         { success: false, error: "Missing transcript text." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -18,10 +18,7 @@ export async function handleMeetingRequest(req: Request) {
 
     const result = await extractMeetingData(transcript);
 
-    return NextResponse.json(
-      { success: true, data: result },
-      { status: 200 }
-    );
+    return NextResponse.json({ success: true, data: result }, { status: 200 });
   } catch (err: unknown) {
     return errorResponse(err, "Failed to process meeting.");
   }

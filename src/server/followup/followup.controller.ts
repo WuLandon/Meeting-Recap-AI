@@ -12,7 +12,7 @@ export async function handleFollowUpRequest(req: Request) {
     if (!summary || summary.trim().length === 0) {
       return NextResponse.json(
         { success: false, error: "Missing meeting summary data." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -27,7 +27,7 @@ export async function handleFollowUpRequest(req: Request) {
 
     return NextResponse.json(
       { success: true, data: { email } },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err: unknown) {
     return errorResponse(err, "Failed to generate follow-up email.");

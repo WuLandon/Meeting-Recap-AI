@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table";
 import type { ActionItem } from "@/shared/types/meeting.types";
 
-
 interface ActionItemsCardProps {
   items: ActionItem[];
 }
@@ -17,9 +16,13 @@ interface ActionItemsCardProps {
 export const ActionItemsCard = ({ items }: ActionItemsCardProps) => {
   return (
     <Card className="p-6 shadow-elegant border-border">
-      <h2 className="text-lg font-semibold text-foreground mb-4">Action Items</h2>
+      <h2 className="text-lg font-semibold text-foreground mb-4">
+        Action Items
+      </h2>
       {items.length === 0 ? (
-        <p className="text-muted-foreground text-sm">No action items were assigned.</p>
+        <p className="text-muted-foreground text-sm">
+          No action items were assigned.
+        </p>
       ) : (
         <div className="overflow-x-auto -mx-6 px-6">
           <Table>
@@ -56,7 +59,9 @@ export const ActionItemsCard = ({ items }: ActionItemsCardProps) => {
                       <span className="text-muted-foreground">—</span>
                     )}
                   </TableCell>
-                  <TableCell className="text-muted-foreground">{item.due || "—"}</TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {item.due || "—"}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

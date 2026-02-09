@@ -7,7 +7,10 @@ type RateLimitOptions = {
   keyPrefix?: string;
 };
 
-export function rateLimit(req: Request, options: RateLimitOptions = {}): Response | null {
+export function rateLimit(
+  req: Request,
+  options: RateLimitOptions = {},
+): Response | null {
   const windowMs = options.windowMs ?? 10000;
   const keyPrefix = options.keyPrefix ?? "default";
   const ip = req.headers.get("x-forwarded-for") || "unknown";
@@ -16,7 +19,9 @@ export function rateLimit(req: Request, options: RateLimitOptions = {}): Respons
   const last = lastCall.get(key);
 
   if (last && now - last < windowMs) {
-    return new Response("Too many requests. Try again in a few seconds.", { status: 429 });
+    return new Response("Too many requests. Try again in a few seconds.", {
+      status: 429,
+    });
   }
 
   lastCall.set(key, now);

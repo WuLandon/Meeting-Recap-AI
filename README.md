@@ -1,6 +1,6 @@
 # Meeting Recap AI
 
-Meeting Recap AI is an intelligent productivity tool that transforms meeting transcripts into structured summaries highlighting key discussions, decisions, and action items — helping teams save time and stay organized. 
+Meeting Recap AI is an intelligent productivity tool that transforms meeting transcripts into structured summaries highlighting key discussions, decisions, and action items — helping teams save time and stay organized.
 
 Built with Next.js, TypeScript, and Tailwind CSS, the app integrates **Google’s Gemini 2.5 Flash** model through an end-to-end AI workflow that generates clear, actionable recaps from raw meeting text.
 
@@ -10,11 +10,11 @@ Built with Next.js, TypeScript, and Tailwind CSS, the app integrates **Google’
 
 ## Features
 
-* **AI-Powered Summaries** – Converts raw meeting transcripts into organized summaries
-* **Action Item Extraction** – Identifies tasks, owners, and due dates
-* **Decision Tracking** – Highlights major team decisions
-* **Next Meeting Notes** – Suggests or records upcoming meeting details
-* **Modern UI** – Responsive, minimal interface using ShadCN + Tailwind
+- **AI-Powered Summaries** – Converts raw meeting transcripts into organized summaries
+- **Action Item Extraction** – Identifies tasks, owners, and due dates
+- **Decision Tracking** – Highlights major team decisions
+- **Next Meeting Notes** – Suggests or records upcoming meeting details
+- **Modern UI** – Responsive, minimal interface using ShadCN + Tailwind
 
 ---
 
@@ -80,7 +80,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Input: Meeting Transcript
 
-> Bob: Let's talk about the upcoming marketing campaign.<br> 
+> Bob: Let's talk about the upcoming marketing campaign.<br>
 > Sarah: I’ll handle the final asset designs so everything is ready for review.<br>
 > John: I’ll take care of preparing the email templates for the launch.<br>
 > Bob: Great. Let’s make sure all campaign assets are finalized by Friday so we can start the social rollout on Monday.<br>

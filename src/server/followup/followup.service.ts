@@ -4,7 +4,9 @@ import { systemPrompt } from "@/lib/system-prompts/followup";
 
 const client = new GoogleGenAI({});
 
-export async function generateFollowUpEmail(meeting: MeetingOutput): Promise<string> {
+export async function generateFollowUpEmail(
+  meeting: MeetingOutput,
+): Promise<string> {
   const { summary, decisions, action_items, next_meeting } = meeting;
 
   if (!summary || summary.trim().length === 0) {
@@ -23,7 +25,7 @@ export async function generateFollowUpEmail(meeting: MeetingOutput): Promise<str
           text: `Meeting Data:\n${JSON.stringify(
             { summary, decisions, action_items, next_meeting },
             null,
-            2
+            2,
           )}`,
         },
       ],

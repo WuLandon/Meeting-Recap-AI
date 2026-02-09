@@ -10,9 +10,7 @@ export const SummaryCard = ({ summary }: SummaryCardProps) => {
       <div className="flex items-start justify-between mb-4">
         <h2 className="text-lg font-semibold text-foreground">Summary</h2>
       </div>
-      <p className="text-foreground leading-relaxed text-base">
-        {summary}
-      </p>
+      <p className="text-foreground leading-relaxed text-base">{summary}</p>
     </Card>
   );
 };
