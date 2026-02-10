@@ -23,7 +23,7 @@
 *.pem
 
 # IDE/editor
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
