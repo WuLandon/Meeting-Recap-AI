@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
-export function errorResponse(err: unknown, fallbackMessage = "Internal server error") {
+export function errorResponse(
+  err: unknown,
+  fallbackMessage = "Internal server error",
+) {
   console.error("API error:", err);
 
   if (err instanceof Error) {
@@ -13,7 +16,7 @@ export function errorResponse(err: unknown, fallbackMessage = "Internal server e
         error: safeMessage,
         code: "INTERNAL",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -24,6 +27,6 @@ export function errorResponse(err: unknown, fallbackMessage = "Internal server e
       error: fallbackMessage,
       code: "INTERNAL",
     },
-    { status: 500 }
+    { status: 500 },
   );
 }

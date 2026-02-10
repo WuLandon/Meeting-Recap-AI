@@ -8,7 +8,10 @@ interface TranscriptInputProps {
   isLoading: boolean;
 }
 
-export const TranscriptInput = ({ onGenerate, isLoading }: TranscriptInputProps) => {
+export const TranscriptInput = ({
+  onGenerate,
+  isLoading,
+}: TranscriptInputProps) => {
   const [transcript, setTranscript] = useState("");
   const charCount = transcript.length;
 
@@ -32,10 +35,12 @@ export const TranscriptInput = ({ onGenerate, isLoading }: TranscriptInputProps)
           disabled={isLoading}
         />
         <p className="text-xs text-muted-foreground">
-          {charCount > 0 ? `${charCount} characters` : "Paste your meeting transcript. We'll extract the essentials."}
+          {charCount > 0
+            ? `${charCount} characters`
+            : "Paste your meeting transcript. We'll extract the essentials."}
         </p>
       </div>
-      
+
       <Button
         onClick={handleSubmit}
         disabled={!transcript.trim() || isLoading}

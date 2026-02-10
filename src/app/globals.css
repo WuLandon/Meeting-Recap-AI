@@ -29,18 +29,20 @@
     --input-bg: 220 14% 98%;
     --panel-bg: 220 18% 99%;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* EmailAssistantPanel design tokens */
-    --panel-surface: 220 18% 97%;          /* main panel background */
-    --panel-header: 220 12% 90%;           /* distinct header surface */
-    --panel-header-foreground: 220 15% 18%;/* darker text for header */
-    --panel-textarea: 220 14% 94%;         /* editable surface */
-    --panel-footer: 220 13% 92%;           /* matches header family */
-    --panel-border-strong: 220 10% 84%;    /* stronger border */
-    --panel-divider: 220 12% 88%;          /* header/footer separators */
+    --panel-surface: 220 18% 97%; /* main panel background */
+    --panel-header: 220 12% 90%; /* distinct header surface */
+    --panel-header-foreground: 220 15% 18%; /* darker text for header */
+    --panel-textarea: 220 14% 94%; /* editable surface */
+    --panel-footer: 220 13% 92%; /* matches header family */
+    --panel-border-strong: 220 10% 84%; /* stronger border */
+    --panel-divider: 220 12% 88%; /* header/footer separators */
     --panel-shadow-elevated: 0px 4px 16px hsl(220 14% 70% / 0.15);
 
     --sidebar-background: 0 0% 98%;
@@ -76,8 +78,10 @@
     --input-bg: 220 15% 15%;
     --panel-bg: 220 15% 11%;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -96,7 +100,6 @@
     --panel-border-strong: 220 15% 20%;
     --panel-divider: 220 15% 22%;
     --panel-shadow-elevated: 0px 4px 16px hsl(220 10% 5% / 0.4);
-
   }
 
   * {
@@ -105,7 +108,13 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      sans-serif;
   }
 }
 

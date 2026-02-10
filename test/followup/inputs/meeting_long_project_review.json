@@ -6,11 +6,31 @@
     "Reassign ownership of customer onboarding flow to the Growth team."
   ],
   "action_items": [
-    { "task": "Profile and optimize caching layer for user endpoints", "owner": "Elias", "due": "Next Friday" },
-    { "task": "Design updated onboarding variation for A/B testing", "owner": "Harper", "due": "Thursday" },
-    { "task": "Prepare customer feedback summary for leadership review", "owner": ["Zoey", "Mateo"], "due": "Tuesday" },
-    { "task": "Implement error handling improvements in setup process", "owner": "Quinn", "due": null },
-    { "task": "Plan cross-team sync on Growth ownership transfer", "owner": "Avery", "due": "Next Monday" }
+    {
+      "task": "Profile and optimize caching layer for user endpoints",
+      "owner": "Elias",
+      "due": "Next Friday"
+    },
+    {
+      "task": "Design updated onboarding variation for A/B testing",
+      "owner": "Harper",
+      "due": "Thursday"
+    },
+    {
+      "task": "Prepare customer feedback summary for leadership review",
+      "owner": ["Zoey", "Mateo"],
+      "due": "Tuesday"
+    },
+    {
+      "task": "Implement error handling improvements in setup process",
+      "owner": "Quinn",
+      "due": null
+    },
+    {
+      "task": "Plan cross-team sync on Growth ownership transfer",
+      "owner": "Avery",
+      "due": "Next Monday"
+    }
   ],
   "next_meeting": "Wednesday 3 PM"
 }

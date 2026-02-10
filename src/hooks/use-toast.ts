@@ -79,7 +79,9 @@ export const reducer = (state: State, action: Action): State => {
     case ACTION_TYPES.UPDATE_TOAST:
       return {
         ...state,
-        toasts: state.toasts.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t)),
+        toasts: state.toasts.map((t) =>
+          t.id === action.toast.id ? { ...t, ...action.toast } : t,
+        ),
       };
 
     case ACTION_TYPES.DISMISS_TOAST: {
@@ -142,7 +144,8 @@ function toast({ duration = 5000, ...props }: Toast) {
       type: ACTION_TYPES.UPDATE_TOAST,
       toast: { ...props, id },
     });
-  const dismiss = () => dispatch({ type: ACTION_TYPES.DISMISS_TOAST, toastId: id });
+  const dismiss = () =>
+    dispatch({ type: ACTION_TYPES.DISMISS_TOAST, toastId: id });
 
   dispatch({
     type: ACTION_TYPES.ADD_TOAST,
@@ -180,7 +183,8 @@ function useToast() {
   return {
     ...state,
     toast,
-    dismiss: (toastId?: string) => dispatch({ type: ACTION_TYPES.DISMISS_TOAST, toastId }),
+    dismiss: (toastId?: string) =>
+      dispatch({ type: ACTION_TYPES.DISMISS_TOAST, toastId }),
   };
 }
 

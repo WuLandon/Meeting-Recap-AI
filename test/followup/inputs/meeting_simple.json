@@ -5,8 +5,16 @@
     "Switch to the new authentication API for next release."
   ],
   "action_items": [
-    { "task": "Test API latency improvements", "owner": "Alex", "due": "Wednesday" },
-    { "task": "Submit dashboard UX revisions", "owner": "Jordan", "due": "Friday" }
+    {
+      "task": "Test API latency improvements",
+      "owner": "Alex",
+      "due": "Wednesday"
+    },
+    {
+      "task": "Submit dashboard UX revisions",
+      "owner": "Jordan",
+      "due": "Friday"
+    }
   ],
   "next_meeting": "Monday 9 AM"
 }
